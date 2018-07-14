@@ -23,7 +23,7 @@ public class Hello extends Application {
                         getChildren().add(new Button("Auto Fill Button 1") {{
                             // only work with HBox/VBox
                             setMaxWidth(Double.MAX_VALUE);
-                            setMaxHeight(Double.MAX_VALUE);
+                            setPrefHeight(Double.MAX_VALUE);
                         }});
                         setHgrow(getChildren().get(0), Priority.ALWAYS);
                     }},
