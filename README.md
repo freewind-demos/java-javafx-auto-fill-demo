@@ -1,5 +1,9 @@
-JavaFX Hello World Demo
-=======================
+JavaFX Auto Fill Demo
+=====================
 
-Show a window with `Hello, JavaFX` label.
+A button auto fill the pane.
+
+Run `Hello.java` in your IDE.
+
+Try to resize the window to see effect.
 

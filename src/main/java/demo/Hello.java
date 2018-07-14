@@ -1,9 +1,10 @@
 package demo;
 
 import javafx.application.Application;
+import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
+import javafx.scene.control.Button;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 public class Hello extends Application {
@@ -14,10 +15,32 @@ public class Hello extends Application {
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Hello");
-        StackPane root = new StackPane() {{
-            getChildren().add(new Label("Hello, JavaFX!"));
+        VBox root = new VBox() {{
+            getChildren().addAll(
+                    new HBox() {{
+                        this.setPrefHeight(100);
+                        this.setStyle("-fx-background-color: GREEN");
+                        getChildren().add(new Button("Auto Fill Button 1") {{
+                            // only work with HBox/VBox
+                            setMaxWidth(Double.MAX_VALUE);
+                            setMaxHeight(Double.MAX_VALUE);
+                        }});
+                        setHgrow(getChildren().get(0), Priority.ALWAYS);
+                    }},
+                    new Pane() {{
+                        final Pane self = this;
+                        this.setPrefHeight(100);
+                        this.setStyle("-fx-background-color: RED");
+                        getChildren().add(new Button("Auto Fill Button 2") {{
+                            // work with all panes
+                            this.prefHeightProperty().bind(self.heightProperty());
+                            this.prefWidthProperty().bind(self.widthProperty());
+                        }});
+                    }}
+            );
         }};
         primaryStage.setScene(new Scene(root, 300, 250));
         primaryStage.show();
     }
+
 }
